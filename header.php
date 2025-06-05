@@ -1,6 +1,5 @@
 <?php
 $page_title = "Header";
-$page = '';
 // Admin panel link - will only be visible if the user is an admin
 $admin_panel_link = isset($_SESSION['account_role']) && $_SESSION['account_role'] == 'Admin' ? '<a href="admin/index.php" target="_blank">Admin</a>' : '';
 // Get the current file name (eg. home.php, profile.php)

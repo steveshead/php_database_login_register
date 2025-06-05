@@ -1,7 +1,7 @@
 <?php
 $page_title = 'Member Register';
-require_once 'header.php';
 $page = 'No Header';
+require_once 'header.php';
 include 'main.php';
 // No need for the user to see the login form if they're logged-in, so redirect them to the home page
 if (isset($_SESSION['account_loggedin'])) {

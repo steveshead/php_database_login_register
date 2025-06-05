@@ -1,5 +1,6 @@
 <?php
 $page_title = "Reset Password";
+$page = '';
 require_once 'header.php';
 include 'main.php';
 // Error message variable

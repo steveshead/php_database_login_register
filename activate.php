@@ -1,5 +1,6 @@
 <?php
 $page_title = 'Activate Account';
+$page = '';
 include 'main.php';
 require_once 'header.php';
 // Success message variable

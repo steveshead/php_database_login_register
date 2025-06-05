@@ -1,5 +1,6 @@
 <?php
 $page_title = 'Profile Page';
+$page = '';
 include 'main.php';
 require_once 'header.php';
 // Check logged-in

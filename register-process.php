@@ -35,7 +35,7 @@ if ($account) {
 	// Username already exists
 	echo 'Error: Username and/or email exists!';
 } else {
-	// Username doesnt exists, insert new account
+	// Username doesnt exist, insert new account
 	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
 	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	// Generate unique activation code

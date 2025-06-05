@@ -2,9 +2,9 @@
 // Your MySQL database hostname.
 define('db_host','localhost');
 // Your MySQL database username.
-define('db_user','steveshead');
+define('db_user','root');
 // Your MySQL database password.
-define('db_pass','!C0nquest!');
+define('db_pass','root');
 // Your MySQL database name.
 define('db_name','loginregistration');
 // Your MySQL database charset.
@@ -20,9 +20,9 @@ define('template_editor','tinymce');
 // If enabled, the user will be redirected to the homepage automatically upon registration.
 define('auto_login_after_register',false);
 // If enabled, the account will require email activation before the user can login.
-define('account_activation',false);
+define('account_activation',true);
 // If enabled, the user will require admin approval before the user can login.
-define('account_approval',false);
+define('account_approval',true);
 /* Mail */
 // If enabled, mail will be sent upon registration with the activation link, etc.
 define('mail_enabled',true);

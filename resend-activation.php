@@ -1,5 +1,6 @@
 <?php
 $page_title = "Resend Activation";
+$page = '';
 require_once 'header.php';
 include 'main.php';
 // Error message variable

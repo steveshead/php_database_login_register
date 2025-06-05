@@ -1,5 +1,6 @@
 <?php
 $page_title = "Logged In - Home";
+$page = '';
 // Include the main.php file
 require_once 'header.php';
 include 'main.php';
