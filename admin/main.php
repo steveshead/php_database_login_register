@@ -84,6 +84,15 @@ echo '<!DOCTYPE html>
         <meta name="viewport" content="width=device-width,minimum-scale=1">
         <title>' . $title . '</title>
         <link href="admin.css" rel="stylesheet" type="text/css">
+        
+    <!-- Default favicon -->
+    <link rel="icon" href="../images/favicon_light_theme.ico" type="image/x-icon">
+
+    <!-- Light mode favicon -->
+    <link rel="icon" href="../images/favicon_light_theme.ico" type="image/x-icon" media="(prefers-color-scheme: light)">
+
+    <!-- Dark mode favicon -->
+    <link rel="icon" href="../images/favicon_dark_theme.ico" type="image/x-icon" media="(prefers-color-scheme: dark)">
     </head>
     <body class="admin">
         <aside>

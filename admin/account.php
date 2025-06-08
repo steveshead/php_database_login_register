@@ -3,6 +3,8 @@ include 'main.php';
 // Default input account values
 $account = [
     'username' => '',
+    'first_name' => '',
+    'last_name' => '',
     'password' => '',
     'email' => '',
     'activation_code' => 'activated',
@@ -38,14 +40,16 @@ if (isset($_GET['id'])) {
             $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $account['password'];
             $activation_code = $_POST['activation_status'] == 'activated' || $_POST['activation_status'] == 'deactivated' ? $_POST['activation_status'] : $_POST['activation_code'];
             $approved = isset($_POST['approved']) && $_POST['approved'] ? 1 : 0;
-            $stmt = $pdo->prepare('UPDATE accounts SET username = ?, password = ?, email = ?, activation_code = ?, role = ?, registered = ?, last_seen = ?, approved = ? WHERE id = ?');
-            $stmt->execute([ $_POST['username'], $password, $_POST['email'], $activation_code, $_POST['role'], $_POST['registered'], $_POST['last_seen'], $approved, $_GET['id'] ]);
+            $stmt = $pdo->prepare('UPDATE accounts SET username = ?, first_name = ?, last_name = ?, password = ?, email = ?, activation_code = ?, role = ?, registered = ?, last_seen = ?, approved = ? WHERE id = ?');
+            $stmt->execute([ $_POST['username'], $_POST['first_name'], $_POST['last_name'], $password, $_POST['email'], $activation_code, $_POST['role'], $_POST['registered'], $_POST['last_seen'], $approved, $_GET['id'] ]);
             header('Location: accounts.php?success_msg=2');
             exit;
         } else {
             // Update the account variables
             $account = [
                 'username' => $_POST['username'],
+                'first_name' => $_POST['first_name'],
+                'last_name' => $_POST['last_name'],
                 'password' => $_POST['password'],
                 'email' => $_POST['email'],
                 'activation_code' => $_POST['activation_code'],
@@ -82,14 +86,16 @@ if (isset($_GET['id'])) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $activation_code = $_POST['activation_status'] == 'activated' || $_POST['activation_status'] == 'deactivated' ? $_POST['activation_status'] : $_POST['activation_code'];
             $approved = isset($_POST['approved']) && $_POST['approved'] ? 1 : 0;
-            $stmt = $pdo->prepare('INSERT IGNORE INTO accounts (username,password,email,activation_code,role,registered,last_seen,approved) VALUES (?,?,?,?,?,?,?,?)');
-            $stmt->execute([ $_POST['username'], $password, $_POST['email'], $activation_code, $_POST['role'], $_POST['registered'], $_POST['last_seen'], $approved ]);
+            $stmt = $pdo->prepare('INSERT IGNORE INTO accounts (username,first_name,last_name,password,email,activation_code,role,registered,last_seen,approved) VALUES (?,?,?,?,?,?,?,?)');
+            $stmt->execute([ $_POST['username'], $_POST['first_name'], $_POST['last_name'], $password, $_POST['email'], $activation_code, $_POST['role'], $_POST['registered'], $_POST['last_seen'], $approved ]);
             header('Location: accounts.php?success_msg=1');
             exit;
         } else {
             // Update the account variables
             $account = [
                 'username' => $_POST['username'],
+                'first_name' => $_POST['first_name'],
+                'last_name' => $_POST['last_name'],
                 'password' => $_POST['password'],
                 'email' => $_POST['email'],
                 'activation_code' => $_POST['activation_code'],
@@ -130,6 +136,12 @@ if (isset($_GET['id'])) {
     <div class="content-block">
 
         <div class="form responsive-width-100">
+
+            <label for="first_name"><span class="required">*</span> First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name" value="<?=$account['first_name']?>">
+
+            <label for="last_name"><span class="required">*</span> Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" value="<?=$account['last_name']?>">
 
             <label for="username"><span class="required">*</span> Username</label>
             <input type="text" id="username" name="username" placeholder="Username" value="<?=$account['username']?>" required>
