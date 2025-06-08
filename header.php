@@ -29,7 +29,7 @@ $current_file_name = basename($_SERVER['PHP_SELF']);
 
     <div class="wrapper">
 
-        <h1>User Login and Register Script</h1>
+        <h1><a href="home.php">User Login & Register Script</a></h1>
 
         <!-- If you prefer to use a logo instead of text uncomment the below code and remove the above h1 tag and replace the src attribute with the path to your logo image
         <img src="https://via.placeholder.com/200x45" width="200" height="45" alt="Logo" class="logo">

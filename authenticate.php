@@ -30,6 +30,8 @@ if ($account) {
 			session_regenerate_id();
 			$_SESSION['account_loggedin'] = TRUE;
 			$_SESSION['account_name'] = $account['username'];
+			$_SESSION['first_name'] = $account['first_name'];
+			$_SESSION['last_name'] = $account['last_name'];
 			$_SESSION['account_id'] = $account['id'];
 			$_SESSION['account_role'] = $account['role'];
 			// IF the "remember me" checkbox is checked...

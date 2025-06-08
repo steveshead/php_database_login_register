@@ -16,13 +16,15 @@ check_loggedin($pdo);
 	</div>	
 	<div class="wrap">
 		<h2>Home</h2>
-		<p>Welcome back, <?=htmlspecialchars($_SESSION['account_name'], ENT_QUOTES)?>!</p>
-	</div>
+        <p>Welcome back, <?= !empty($_SESSION['first_name']) ? htmlspecialchars($_SESSION['first_name'], ENT_QUOTES) : htmlspecialchars($_SESSION['account_name']) ?>!</p>
+    </div>
 </div>
 
 <div class="block">
 
-	<p>You can customize this page by editing the home.php file.</p>
+	<h1>Welcome to the PHP Login and Registration Script</h1>
+    <p>This is where you can put all of your introductory HTML</p>
+    <a class="btn blue mar-top-5 mar-bot-2" href="logout.php">Logout</a>
 
 </div>
 
