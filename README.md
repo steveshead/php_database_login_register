@@ -1,12 +1,12 @@
-# # Welcome to the PHP User Login and Registration System
-## ## Overview
+# Welcome to the PHP User Login and Registration System
+## Overview
 
 This system provides a simple user login and registration functionality using MySql to store user details.
 
-## ### Current Date
+### Current Date
 `2025-06-08`
 
-## ## Available Files
+## Available Files
 - `activation-email-template.html`
 - `notification-email-template.html`
 - `resetpass-email-template.html`
