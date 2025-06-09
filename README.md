@@ -30,7 +30,7 @@ This system provides a simple user login and registration functionality using My
 
 ## PHP Databaseless User Login and Registration System
 
-Written in PHP this script uses MySql to store user details. It has two user roles: admin and user.
+Written in PHP this script uses MySql to store user details. It has two user roles: admin and member.
 I have setup one user for each role with default values. Users and admins can edit their user 
 details from the 'edit profile' link in their dashboard.
 
