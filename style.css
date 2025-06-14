@@ -452,6 +452,7 @@ h6 {
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
+  text-transform: uppercase;
 }
 .header .wrapper .menu a svg {
   fill: #87919e;

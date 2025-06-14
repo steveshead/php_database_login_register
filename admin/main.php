@@ -102,8 +102,8 @@ echo '<!DOCTYPE html>
             </h1>
             ' . $admin_links . '
             <div class="footer">
-                <a href="https://codeshack.io/package/php/advanced-secure-login-registration-system/" target="_blank">Advanced Login &amp; Registration</a>
-                Version 4.0.0
+                <a href="/">Advanced Login &amp; Registration</a>
+                Version 1.0.0
             </div>
         </aside>
         <main class="responsive-width-100">

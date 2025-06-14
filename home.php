@@ -2,8 +2,9 @@
 $page_title = "Logged In - Home";
 $page = '';
 // Include the main.php file
-require_once 'header.php';
 include 'main.php';
+require_once 'header.php';
+
 // Check if the user is logged in, if not then redirect to login page
 check_loggedin($pdo);
 // Template code below

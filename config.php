@@ -22,7 +22,7 @@ define('auto_login_after_register',false);
 // If enabled, the account will require email activation before the user can login.
 define('account_activation',true);
 // If enabled, the user will require admin approval before the user can login.
-define('account_approval',true);
+define('account_approval',false);
 /* Mail */
 // If enabled, mail will be sent upon registration with the activation link, etc.
 define('mail_enabled',true);
