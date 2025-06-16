@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `reset_code` varchar(255) DEFAULT NULL,
   `last_seen` datetime NOT NULL,
   `registered` datetime NOT NULL,
+  'avatar' varchar(255) NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

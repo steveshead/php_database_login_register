@@ -72,7 +72,7 @@ function template_admin_header($title, $selected = 'dashboard', $selected_child 
     // Profile image
     $profile_img = '
     <div class="profile-img">
-        <span style="background-color:' . color_from_string($_SESSION['account_name']) . '">' . strtoupper(substr($_SESSION['account_name'], 0, 1)) . '</span>
+        <span><img class="profile-avatar" src="' . ($_SESSION['avatar'] ? htmlspecialchars($_SESSION['avatar']) : '/images/avatar/default_avatar.png') . '"></span>
         <i class="online"></i>
     </div>
     ';

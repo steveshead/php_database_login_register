@@ -34,6 +34,7 @@ if ($account) {
 			$_SESSION['last_name'] = $account['last_name'];
 			$_SESSION['account_id'] = $account['id'];
 			$_SESSION['account_role'] = $account['role'];
+			$_SESSION['avatar'] = $account['avatar'];
 			// IF the "remember me" checkbox is checked...
 			if (isset($_POST['remember_me'])) {
 				// Generate a hash that will be stored as a cookie and in the database. It will be used to identify the user.

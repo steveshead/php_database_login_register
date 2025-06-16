@@ -73,46 +73,56 @@ if (isset($_POST['username'], $_POST['npassword'], $_POST['cpassword'], $_POST['
 
 	<!-- Tip: it's good practice to escape user variables using htmlspecialchars() to prevent XSS attacks. -->
 
-    <div class="page-title">
-        <div class="icon">
-            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+    <div class="row">
+        <div class="column">
+
+            <div class="page-title">
+                <div class="icon">
+                    <img class="profile-avatar" src="<?= !empty($account['avatar']) ? htmlspecialchars($account['avatar'], ENT_QUOTES) : '/images/avatar/default_avatar.png' ?>">
+                </div>
+                <div class="wrap">
+                    <h1>PROFILE</h1>
+                </div>
+            </div>
+
+            <div class="profile-detail">
+                <strong>First Name</strong>
+                <?= !empty($account['first_name']) ? htmlspecialchars($account['first_name'], ENT_QUOTES) : '<div class="padding"></div>' ?>
+            </div>
+
+            <div class="profile-detail">
+                <strong>Last Name</strong>
+                <?= !empty($account['last_name']) ? htmlspecialchars($account['last_name'], ENT_QUOTES) : '<div class="padding"></div>' ?>
+            </div>
+
+            <div class="profile-detail">
+                <strong>Username</strong>
+                <?=htmlspecialchars($account['username'], ENT_QUOTES)?>
+            </div>
+
+            <div class="profile-detail">
+                <strong>Email</strong>
+                <?=htmlspecialchars($account['email'], ENT_QUOTES)?>
+            </div>
+
+            <div class="profile-detail">
+                <strong>Role</strong>
+                <?=$account['role']?>
+            </div>
+
+            <div class="profile-detail">
+                <strong>Registered</strong>
+                <?=date('Y-m-d H:ia', strtotime($account['registered']))?>
+            </div>
+
+            <a class="btn blue mar-top-5 mar-bot-2" href="?action=edit">Edit Profile</a>
+
         </div>
-        <div class="wrap">
-            <h1>PROFILE</h1>
+
+        <div class="column avatar-image">
+            <img class="avatar" src="<?= !empty($account['avatar']) ? htmlspecialchars($account['avatar'], ENT_QUOTES) : '/images/avatar/default_avatar.png' ?>">
         </div>
     </div>
-
-    <div class="profile-detail">
-        <strong>First Name</strong>
-        <?= !empty($account['first_name']) ? htmlspecialchars($account['first_name'], ENT_QUOTES) : '<div class="padding"></div>' ?>
-    </div>
-
-    <div class="profile-detail">
-        <strong>Last Name</strong>
-        <?= !empty($account['last_name']) ? htmlspecialchars($account['last_name'], ENT_QUOTES) : '<div class="padding"></div>' ?>
-    </div>
-
-    <div class="profile-detail">
-		<strong>Username</strong>
-		<?=htmlspecialchars($account['username'], ENT_QUOTES)?>
-	</div>
-
-	<div class="profile-detail">
-		<strong>Email</strong>
-		<?=htmlspecialchars($account['email'], ENT_QUOTES)?>
-	</div>
-
-	<div class="profile-detail">
-		<strong>Role</strong>
-		<?=$account['role']?>
-	</div>
-
-	<div class="profile-detail">
-		<strong>Registered</strong>
-		<?=date('Y-m-d H:ia', strtotime($account['registered']))?>
-	</div>
-
-	<a class="btn blue mar-top-5 mar-bot-2" href="?action=edit">Edit Profile</a>
 
 </div>
 
@@ -181,8 +191,9 @@ if (isset($_POST['username'], $_POST['npassword'], $_POST['cpassword'], $_POST['
 		<?php endif; ?>
 
 		<div class="mar-bot-2">
-			<button class="btn blue mar-top-1 mar-right-1" type="submit">Save Details</button>
-			<a href="profile.php" class="btn alt mar-top-1">Back To Profile</a>
+			<button class="btn blue mar-top-1 mar-right-1" type="submit">Save</button>
+            <a href="avatar.php" class="btn blue mar-top-1 mar-right-1" type="submit">Upload Avatar</a>
+			<a href="profile.php" class="btn alt mar-top-1">To Profile</a>
 		</div>
 
 	</form>
