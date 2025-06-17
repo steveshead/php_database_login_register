@@ -192,7 +192,7 @@ if (isset($_POST['username'], $_POST['npassword'], $_POST['cpassword'], $_POST['
 
 		<div class="mar-bot-2">
 			<button class="btn blue mar-top-1 mar-right-1" type="submit">Save</button>
-            <a href="avatar.php" class="btn blue mar-top-1 mar-right-1" type="submit">Upload Avatar</a>
+            <a href="avatar.php" class="btn blue mar-top-1 mar-right-1" type="submit"><?= !empty($account['avatar']) ? 'Change Avatar' : 'Upload Avatar' ?></a>
 			<a href="profile.php" class="btn alt mar-top-1">To Profile</a>
 		</div>
 
