@@ -480,7 +480,7 @@ h6 {
 
 .content {
   width: 1000px;
-  margin: 0 auto;
+  margin: -300px auto 0;
 }
 .content .page-title {
   display: flex;
@@ -518,7 +518,6 @@ h6 {
 }
 .content .block {
   box-shadow: 0px 0px 7px 1px rgba(45, 54, 68, 0.05);
-  margin: 25px 0;
   padding: 25px;
   border-radius: 5px;
   background-color: #fff;
@@ -998,6 +997,21 @@ h6 {
 .footer .wrapper img.footer-logo {
   margin-right: 5px !important;
   margin-bottom: -3px;
+}
+
+.blank-banner {
+  height: 350px;
+  background: #e2e2e2;
+  border-top: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+  box-shadow: 0px 0px 7px 1px rgba(45, 54, 68, 0.05);
+}
+
+.contact img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=style.css.map */

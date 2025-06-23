@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 <div class="block">
-    <div class="row">
+    <div class="row contact">
         <div class="column">
             <div class="page-title">
                 <div class="icon">
@@ -52,6 +52,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
+            <h3>Reach out and say hello!</h3>
             <p>Please fill out the form below to get in touch with us. We'll respond to your inquiry as soon as possible.</p>
 
             <form class="form" method="post" action="contact.php">
@@ -82,7 +83,10 @@ if (isset($_POST['submit'])) {
                 </div>
             </form>
         </div>
-        <div class="column"></div>
+        <div class="column">
+            <img src="images/hello.png" width="40%">
+            <p></p>
+        </div>
     </div>
 </div>
 

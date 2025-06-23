@@ -1,5 +1,4 @@
 <?php
-$page_title = "Login Registration Script";
 // Admin panel link - will only be visible if the user is an admin
 $admin_panel_link = isset($_SESSION['account_role']) && $_SESSION['account_role'] === 'Admin' ? '<a href="admin/index.php" target="_blank">Admin</a>' : '';
 // Get the current file name (eg. home.php, profile.php)
@@ -46,5 +45,12 @@ $current_file_name = basename($_SERVER['PHP_SELF']);
         </nav>
     </div>
 </header>
+<?php
+if (isset($page) && $page === "No Header") {
+    echo '<div class="header-spacing"></div>';
+} else {
+    echo '<div class="blank-banner"></div>';
+}
+?>
 
 <div class="content">
