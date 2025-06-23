@@ -179,4 +179,67 @@ function send_password_reset_email($email, $username, $code) {
 		exit('Error: Message could not be sent. Mailer Error: ' . $mail->ErrorInfo);
 	}
 }
+
+// Send contact form email function
+function send_contact_email($name, $email, $subject, $message) {
+	if (!mail_enabled) return false;
+	// Include PHPMailer library
+	include_once 'lib/phpmailer/Exception.php';
+	include_once 'lib/phpmailer/PHPMailer.php';
+	include_once 'lib/phpmailer/SMTP.php';
+	// Create an instance; passing `true` enables exceptions
+	$mail = new PHPMailer(true);
+	try {
+		// Server settings
+		if (SMTP) {
+			$mail->isSMTP();
+			$mail->Host = smtp_host;
+			$mail->SMTPAuth = true;
+			$mail->Username = smtp_user;
+			$mail->Password = smtp_pass;
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+			$mail->Port = smtp_port;
+		}
+		// Recipients
+		$mail->setFrom(mail_from, mail_name);
+		$mail->addAddress(notification_email); // Send to the site admin
+		$mail->addReplyTo($email, $name); // Set reply-to as the sender's email
+		// Content
+		$mail->isHTML(true);
+		$mail->Subject = 'Contact Form: ' . $subject;
+
+		// Email body content
+		$body = '<!DOCTYPE html>
+		<html>
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width,minimum-scale=1">
+			<title>Contact Form Submission</title>
+		</head>
+		<body style="margin:0;padding:0">
+			<div style="background-color:#f5f5f5;padding:20px;">
+				<div style="max-width:600px;margin:0 auto;background-color:#ffffff;padding:20px;border-radius:5px;">
+					<h2 style="color:#333333;">New Contact Form Submission</h2>
+					<p><strong>Name:</strong> ' . htmlspecialchars($name, ENT_QUOTES) . '</p>
+					<p><strong>Email:</strong> ' . htmlspecialchars($email, ENT_QUOTES) . '</p>
+					<p><strong>Subject:</strong> ' . htmlspecialchars($subject, ENT_QUOTES) . '</p>
+					<p><strong>Message:</strong></p>
+					<p style="background-color:#f9f9f9;padding:15px;border-radius:5px;">' . nl2br(htmlspecialchars($message, ENT_QUOTES)) . '</p>
+				</div>
+			</div>
+		</body>
+		</html>';
+
+		// Set email body
+		$mail->Body = $body;
+		$mail->AltBody = "Name: $name\nEmail: $email\nSubject: $subject\nMessage: $message";
+
+		// Send mail
+		$mail->send();
+		return true;
+	} catch (Exception $e) {
+		// Return false on error
+		return false;
+	}
+}
 ?>

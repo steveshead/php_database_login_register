@@ -25,7 +25,7 @@ $current_file_name = basename($_SERVER['PHP_SELF']);
 </head>
 <body>
 
-<header class="header <?php echo ($page === 'No Header') ? 'display-none' : ''; ?>">
+<header class="header <?php echo (isset($page) && $page === 'No Header') ? 'display-none' : ''; ?>">
     <div class="wrapper">
         <h1><a href="home.php"><img class="header-logo" src="images/favicon_dark_theme.png" width="25" height="25" alt="Logo" class="logo"> User Login & Register Script</a></h1>
 
@@ -35,8 +35,9 @@ $current_file_name = basename($_SERVER['PHP_SELF']);
         <label for="menu"></label>
 
         <nav class="menu">
-            <a href="home.php" class="' . ($current_file_name == 'home.php' ? 'active' : '') . '">Home</a>
-            <a href="profile.php" class="' . ($current_file_name == 'profile.php' ? 'active' : '') . '">Profile</a>
+            <a href="home.php" class="<?= $current_file_name == 'home.php' ? 'active' : '' ?>">Home</a>
+            <a href="profile.php" class="<?= $current_file_name == 'profile.php' ? 'active' : '' ?>">Profile</a>
+            <a href="contact.php" class="<?= $current_file_name == 'contact.php' ? 'active' : '' ?>">Contact</a>
             <?=$admin_panel_link?>
             <a href="logout.php" class="alt">
                 <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
