@@ -25,6 +25,12 @@ if (isset($_POST['resetpass_email_template'])) {
         exit;
     }
 }
+if (isset($_POST['contact_email_template'])) {
+    if (file_put_contents('../contact-email-template.html', $_POST['contact_email_template']) === false) {
+        header('Location: email_templates.php?success_msg=1');
+        exit;
+    }
+}
 if (isset($_POST['submit'])) {
     header('Location: email_templates.php?success_msg=1');
     exit;
@@ -44,6 +50,10 @@ if (file_exists('../twofactor-email-template.html')) {
 // Read the reset password email template HTML file
 if (file_exists('../resetpass-email-template.html')) {
     $resetpass_email_template = file_get_contents('../resetpass-email-template.html');
+}
+// Read the contact email template HTML file
+if (file_exists('../contact-email-template.html')) {
+    $contact_email_template = file_get_contents('../contact-email-template.html');
 }
 // Handle success messages
 if (isset($_GET['success_msg'])) {
@@ -102,6 +112,9 @@ if (isset($_GET['error_msg'])) {
         <?php if (isset($resetpass_email_template)): ?>
         <a href="#">Reset Password</a>
         <?php endif; ?>
+        <?php if (isset($contact_email_template)): ?>
+        <a href="#">Contact Form</a>
+        <?php endif; ?>
     </div>
 
     <div class="content-block">
@@ -150,6 +163,17 @@ if (isset($_GET['error_msg'])) {
                 <?php endif; ?>
             </div>
             <?php endif; ?>
+            <?php if (isset($contact_email_template)): ?>
+            <div class="tab-content">
+                <?php if (template_editor == 'tinymce'): ?>
+                <div style="width:100%">
+                    <textarea id="contact_email_template" name="contact_email_template" style="width:100%;height:600px;" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><?=$contact_email_template?></textarea>
+                </div>
+                <?php else: ?>
+                <textarea name="contact_email_template" id="contact_email_template" class="code-editor"><?=$contact_email_template?></textarea>
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -159,7 +183,7 @@ if (isset($_GET['error_msg'])) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" integrity="sha512-RUZ2d69UiTI+LdjfDCxqJh5HfjmOcouct56utQNVRjr90Ea8uHQa+gCxvxDTC9fFvIGP+t4TDDJWNTRV48tBpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 tinymce.init({
-    selector: '#activation_email_template, #notification_email_template, #twofactor_email_template, #resetpass_email_template',
+    selector: '#activation_email_template, #notification_email_template, #twofactor_email_template, #resetpass_email_template, #contact_email_template',
     plugins: 'image table lists media link code',
     toolbar: 'undo redo | blocks | bold italic forecolor | align | outdent indent | numlist bullist | table image link | code',
     menubar: 'edit view insert format tools table',

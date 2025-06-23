@@ -208,31 +208,20 @@ function send_contact_email($name, $email, $subject, $message) {
 		$mail->isHTML(true);
 		$mail->Subject = 'Contact Form: ' . $subject;
 
+		// Get current date
+		$date = date('Y-m-d H:i:s');
+
+		// Read the template contents and replace the placeholders with the actual values
+		$email_template = str_replace(['%name%', '%email%', '%subject%', '%date%', '%message%'], 
+			[htmlspecialchars($name, ENT_QUOTES), htmlspecialchars($email, ENT_QUOTES), htmlspecialchars($subject, ENT_QUOTES), $date, nl2br(htmlspecialchars($message, ENT_QUOTES))], 
+			file_get_contents('contact-email-template.html'));
+
 		// Email body content
-		$body = '<!DOCTYPE html>
-		<html>
-		<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width,minimum-scale=1">
-			<title>Contact Form Submission</title>
-		</head>
-		<body style="margin:0;padding:0">
-			<div style="background-color:#f5f5f5;padding:20px;">
-				<div style="max-width:600px;margin:0 auto;background-color:#ffffff;padding:20px;border-radius:5px;">
-					<h2 style="color:#333333;">New Contact Form Submission</h2>
-					<p><strong>Name:</strong> ' . htmlspecialchars($name, ENT_QUOTES) . '</p>
-					<p><strong>Email:</strong> ' . htmlspecialchars($email, ENT_QUOTES) . '</p>
-					<p><strong>Subject:</strong> ' . htmlspecialchars($subject, ENT_QUOTES) . '</p>
-					<p><strong>Message:</strong></p>
-					<p style="background-color:#f9f9f9;padding:15px;border-radius:5px;">' . nl2br(htmlspecialchars($message, ENT_QUOTES)) . '</p>
-				</div>
-			</div>
-		</body>
-		</html>';
+		$body = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,minimum-scale=1"><title>Contact Form Submission</title></head><body style="margin:0;padding:0">' . $email_template . '</body></html>';
 
 		// Set email body
 		$mail->Body = $body;
-		$mail->AltBody = "Name: $name\nEmail: $email\nSubject: $subject\nMessage: $message";
+		$mail->AltBody = "Name: $name\nEmail: $email\nSubject: $subject\nDate: $date\nMessage: $message";
 
 		// Send mail
 		$mail->send();
