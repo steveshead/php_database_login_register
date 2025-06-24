@@ -4,7 +4,7 @@
 This system provides a simple user login and registration functionality using MySql to store user details.
 
 ### Current Date
-`2025-06-08`
+`2025-06-23`
 
 ## Available Files
 - `activation-email-template.html`
