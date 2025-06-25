@@ -769,7 +769,6 @@ h6 {
 	box-shadow: 0px 0px 7px 1px rgba(45, 54, 68, 0.05);
 }
 .contact {
-
 	img {
 		display: flex;
 		justify-content: center;
@@ -777,4 +776,7 @@ h6 {
 		margin: 0 auto;
 		opacity: 0.75;
 	}
+}
+.header-spacing {
+	margin-top: 400px;
 }
