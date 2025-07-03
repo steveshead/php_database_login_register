@@ -21,7 +21,7 @@ check_loggedin($pdo);
         </div>
     </div>
 
-	<h1>Welcome to the PHP Login and Registration Script, <?= !empty($_SESSION['first_name']) ? htmlspecialchars($_SESSION['first_name'], ENT_QUOTES) : htmlspecialchars($_SESSION['account_name']) ?>!</h1>
+	<h1>Welcome to the PHP Login and Registration Script, <?= !empty($_SESSION['first_name']) ? htmlspecialchars($_SESSION['first_name'], ENT_QUOTES) . ' ' . htmlspecialchars($_SESSION['last_name'], ENT_QUOTES) : htmlspecialchars($_SESSION['account_name']) ?>!</h1>
     <p>Written in PHP this script uses MySql to store user details. It has two user roles: <i>admin</i> and <i>member</i>. I have setup one user for each role with default values. Users and admins can edit their user details from the 'edit profile' link in their dashboard.</p>
     <p><b>User</b>: Admin<br>
     <b>Password</b>: admin</p>
