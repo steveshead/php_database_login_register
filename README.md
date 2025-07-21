@@ -11,6 +11,7 @@ This script utilizes Brute Force and CSRF protections, as well as being able to 
 - `activation-email-template.html`
 - `notification-email-template.html`
 - `resetpass-email-template.html`
+- `twofactor-email-template.html`
 - `activate.php`
 - `authenticate.php`
 - `config.php`
@@ -25,6 +26,7 @@ This script utilizes Brute Force and CSRF protections, as well as being able to 
 - `register-process.php`
 - `resend-activation.php`
 - `reset-password.php`
+- `twofactor.php`
 - `styles.scss`
 - `styles.css`
 - `phplogin.sql`
