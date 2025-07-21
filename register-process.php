@@ -47,8 +47,9 @@ if ($account) {
 	// Current date
 	$date = date('Y-m-d\TH:i:s');
 	// Prepare query; prevents SQL injection
-	$stmt = $pdo->prepare('INSERT INTO accounts (username, password, email, activation_code, role, registered, last_seen, approved) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-	$stmt->execute([ $_POST['username'], $password, $_POST['email'], $activation_code, $role, $date, $date, $approved ]);
+    $stmt = $pdo->prepare('INSERT INTO accounts (username, password, email, activation_code, role, registered, last_seen, approved, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $stmt->execute([ $_POST['username'], $password, $_POST['email'], $activation_code, $role, $date, $date, $approved, $ip ]);
 	// Get last insert ID
 	$id = $pdo->lastInsertId();
 	// Send notification email

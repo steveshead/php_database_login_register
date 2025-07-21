@@ -1,7 +1,16 @@
 <?php
 include 'main.php';
+if (!isset($_POST['token']) || $_POST['token'] != $_SESSION['token']) {
+    exit('Error: Incorrect token provided!');
+}
+// Add Brute Force
+$login_attempts = login_attempts($pdo, FALSE);
+if ($login_attempts && $login_attempts['attempts_left'] <= 0) {
+    exit('Error: You cannot login right now! Please try again later!');
+}
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if (!isset($_POST['username'], $_POST['password'])) {
+    $login_attempts = login_attempts($pdo);
 	// Could not retrieve the captured data, output error
 	exit('Error: Please fill both the username and password fields!');
 }
@@ -24,6 +33,10 @@ if ($account) {
 		} else if (account_approval && !$account['approved']) {
 			// The account is not approved
 			echo 'Error: Your account has not been approved yet!';
+        } else if ($_SERVER['REMOTE_ADDR'] != $account['ip']) {
+            // Two-factor authentication required
+            $_SESSION['tfa_id'] = $account['id'];
+            echo 'tfa: twofactor.php';
 		} else {
 			// Verification success! User has loggedin!
 			// Declare the session variables, which will basically act like cookies, but will store the data on the server as opposed to the client
@@ -53,14 +66,19 @@ if ($account) {
 			$stmt->execute([ $date, $account['id'] ]);
 			// Success! Redirect to the home page
 			// Output msg: do not change this line as the AJAX code depends on it
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $stmt = $pdo->prepare('DELETE FROM login_attempts WHERE ip_address = ?');
+            $stmt->execute([ $ip ]);
 			echo 'Redirect: home.php'; 
 		}
 	} else {
 		// Incorrect password
-		echo 'Error: Incorrect username and/or password!';
+        $login_attempts = login_attempts($pdo, TRUE);
+        echo 'Error: Incorrect username and/or password! You have ' . $login_attempts['attempts_left'] . ' attempts remaining!';
 	}
 } else {
 	// Incorrect username
-	echo 'Error: Incorrect username and/or password!';
+    $login_attempts = login_attempts($pdo, TRUE);
+    echo 'Error: Incorrect username and/or password! You have ' . $login_attempts['attempts_left'] . ' attempts remaining!';
 }
 ?>

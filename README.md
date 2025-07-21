@@ -2,9 +2,10 @@
 ## Overview
 
 This system provides a simple user login and registration functionality using MySql to store user details.
+This script utilizes Brute Force and CSRF protections, as well as being able to use 2FA.
 
 ### Current Date
-`2025-06-23`
+`2025-07-20`
 
 ## Available Files
 - `activation-email-template.html`

@@ -32,6 +32,7 @@ if (isset($_COOKIE['remember_me']) && !empty($_COOKIE['remember_me'])) {
 		exit;
 	}
 }
+$_SESSION['token'] = hash('sha256', uniqid(rand(), true));
 ?>
 
 		<div class="login">
@@ -63,7 +64,8 @@ if (isset($_COOKIE['remember_me']) && !empty($_COOKIE['remember_me'])) {
 					</label>
 					<a href="forgot-password.php" class="form-link">Forgot password?</a>
 				</div>
-				
+
+                <input type="hidden" name="token" value="<?=$_SESSION['token']?>">
 				<div class="msg"></div>
 
 				<button class="btn blue" type="submit">Login</button>
@@ -84,6 +86,8 @@ if (isset($_COOKIE['remember_me']) && !empty($_COOKIE['remember_me'])) {
                             loginForm.querySelector('.msg').innerHTML = result.replace('Success: ', '');
                         } else if (result.toLowerCase().includes('redirect:')) {
                             window.location.href = result.replace('Redirect:', '').trim();
+                        } else if (result.includes('tfa:')) {
+                            window.location.href = result.replace('tfa: ', '');
                         } else {
                             loginForm.querySelector('.msg').classList.remove('error','success');
                             loginForm.querySelector('.msg').classList.add('error');
